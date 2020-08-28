@@ -13,17 +13,15 @@ class Gate {
     public static final int CLOSED=0;
     private static int mSwing;
 
-    public Gate(){
-     
-    }
+    
     public static
     int getSwingDirection () {
         return mSwing;
     }
 
     public static
-    boolean setSwing ( int mSwing ) {
-        Gate.mSwing=mSwing;
+    boolean setSwing ( int dir ) {
+        Gate.mSwing=dir;
         if (Gate.mSwing == IN) return true;
         if (Gate.mSwing == OUT) return true;
         return Gate.mSwing == CLOSED;
