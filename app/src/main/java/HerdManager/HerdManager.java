@@ -1,9 +1,6 @@
-// package mooc.vandy.java4android.gate.logic;
 package HerdManager;
 
 import java.util.Random;
-
-
 
 /**
  * This class uses your Gate class to manage a herd of snails. We have supplied you will the code
