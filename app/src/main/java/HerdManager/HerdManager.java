@@ -26,21 +26,15 @@ class HerdManager extends Gate {
     /** Constructor initializes the fields. */
     public
     HerdManager ( Gate westGate , Gate eastGate ) {
-        // mOut = out;
 
         mWestGate=westGate;
         mWestGate.open(Gate.IN);
-//System.out.println(getSwingDirection());
         mEastGate=eastGate;
         mEastGate.open(Gate.OUT);
-        //  System.out.println(getSwingDirection());
-        //System.out.println(mWestGate.toString());
-        //System.out.println(mEastGate.toString());
     }
 
     public static
     void main ( String[] args ) {
-        // System.out.println(getSwingDirection());
         Random randomNumber=new Random(sRANDOM_SEED);
         Gate westGate=new Gate();
 
@@ -55,51 +49,31 @@ class HerdManager extends Gate {
 
     public
     void simulateHerd ( Random rand ) {
-        int snailQty=HERD;
-        int pasture=0;
-        int randomSnails;
-        boolean bool;
+        int snailQty = HERD;
+        int pasture = 0;
         System.out.println(
                 "There are currently "
-                        +snailQty
+                        + snailQty
                         +" snails in the pen and "
-                        +pasture
+                        + pasture
                         +" snails in the pasture");
 
         for ( int i=0; i<MAX_ITERATIONS; i++ ) {
-            // System.out.println(snailQty);
             if (pasture == 0) {
-                mEastGate.open(Gate.OUT);
-                System.out.println("pasture is 0 :"+getSwingDirection());
-                randomSnails=rand.nextInt(snailQty)+1;
-                snailQty+=mEastGate.thru(randomSnails);
-                // System.out.println("east out :"+getSwingDirection());
-                // System.out.println(snailQty+"_"+pasture);
+                mEastGate.open(Gate.OUT);   // Opened gate for snails exiting from pen.
+                snailQty+=mEastGate.thru(rand.nextInt(snailQty)+1);
             } else if (snailQty == 0) {
-                System.out.println("dir In: "+getSwingDirection());
-                // System.out.println(snailQty+"_" + pasture);
-                mWestGate.open(Gate.IN);
-                randomSnails=rand.nextInt(pasture)+1;
-                snailQty+=mWestGate.thru(randomSnails);
-                // System.out.println("IN= "+getSwingDirection());
+                mWestGate.open(Gate.IN);    // Opened Gate for entry of snails in pen.
+                snailQty+=mWestGate.thru(rand.nextInt(pasture)+1);
             } else {
-                bool=rand.nextBoolean();
-
-                if (bool) {
-                    // System.out.println(snailQty+"_"+pasture);
-                    System.out.println("snail less :"+getSwingDirection());
-                    mEastGate.open(Gate.OUT);
-                    randomSnails=rand.nextInt(snailQty)+1;
-                    snailQty+=(mEastGate.thru(randomSnails));
+                if (rand.nextBoolean()) {
+                    mEastGate.open(Gate.OUT);   // Opened gate for snails exiting from pen.
+                    snailQty+=(mEastGate.thru(rand.nextInt(snailQty)+1));
                 } else {
-                    // System.out.println(snailQty+"_"+pasture);
-                    System.out.println("pasture less :"+getSwingDirection());
-                    randomSnails=rand.nextInt(pasture)+1;
-                    mWestGate.open(Gate.IN);
-                    snailQty+=mWestGate.thru(randomSnails);
+                    mWestGate.open(Gate.IN);    // Opened Gate for entry of snails in pen
+                    snailQty+=mWestGate.thru(rand.nextInt(pasture)+1);
                 }
             }
-            //System.out.println("pasture= "+pasture);
             pasture=HERD-snailQty;
             System.out.println(
                     "There are currently "
@@ -109,8 +83,8 @@ class HerdManager extends Gate {
                             +" snails in the pasture");
         }
     }
-
 }
+
       
       
       
