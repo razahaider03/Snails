@@ -13,7 +13,7 @@ class Gate {
     public static final int CLOSED=0;
     private static int mSwing;
 
-    
+
     public static
     int getSwingDirection () {
         return mSwing;
