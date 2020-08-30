@@ -54,9 +54,9 @@ class Gate {
     @Override
     public
     String toString () {
-        if (mSwing == CLOSED) return "This gate is closed";
-        else if (mSwing == IN) return "This gate is open and swings to enter the pen only";
-        else if (mSwing == OUT) return "This gate is open and swings to exit the pen only";
+        if (getSwingDirection() == CLOSED) return "This gate is closed";
+        else if (getSwingDirection () == IN) return "This gate is open and swings to enter the pen only";
+        else if (getSwingDirection () == OUT) return "This gate is open and swings to exit the pen only";
         else return "This gate has an invalid swing direction";
     }
 }
