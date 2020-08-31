@@ -21,10 +21,14 @@ class Gate {
 
     public static
     boolean setSwing ( int dir ) {
-        Gate.mSwing=dir;
-        if (Gate.mSwing == IN) return true;
-        if (Gate.mSwing == OUT) return true;
-        return Gate.mSwing == CLOSED;
+        mSwing=dir;
+        {
+        if (mSwing == IN) return true;
+        if (mSwing == OUT) return true;
+        if (mSwing == CLOSED) return true;
+       }
+       return false;
+        
     }
 
     public
@@ -39,7 +43,7 @@ class Gate {
     public
     int thru ( int count ) {
         if (getSwingDirection() == IN) {
-            return count;
+            return +count;
         } else if (getSwingDirection() == OUT) {
             return -count;
         } else count*=0;
